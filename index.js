@@ -11,7 +11,7 @@ app.use(users)
 app.use(inventory)
 
 
-const port = 3330;
+const port = process.env.PORT || 3330;
 
 app.get("/", (req,res) => {
     console.log("hello world")
