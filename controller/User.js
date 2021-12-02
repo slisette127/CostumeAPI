@@ -26,10 +26,11 @@ const newUserInventory = (req, res, next) => {
         const sql = `
             CREATE TABLE ${UserName}_Inventory_Table (
                 ItemId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                Name VARCHAR(255),
+                Name VARCHAR(255) NOT NULL,
                 Description VARCHAR(255),
-                Quantity VARCHAR(255),
-                Measurement VARCHAR(255)
+                Quantity VARCHAR(255) NOT NULL,
+                Measurement VARCHAR(255) NOT NULL,
+                ImageURL VARCHAR(255) NOT NULL
             );
         `
        

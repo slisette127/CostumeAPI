@@ -1,9 +1,10 @@
 const mySql = require("mysql");
+require('dotenv').config()
 const connection = mySql.createConnection({
-    host: 'capstone-costume.cavgtreijrxk.us-east-2.rds.amazonaws.com',
-    user: 'admin',
-    password: 'password',
-    database: 'Costume'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
 
 })
 
