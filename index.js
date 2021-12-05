@@ -4,9 +4,9 @@ const connection = require("./SQL/connection");
 const cors = require("cors")
 const users = require("./routes/User")
 const inventory = require("./routes/Inventory")
+app.use(cors())
 app.use(express.urlencoded({extended: true}));
 app.use(express.json()) // To parse the incoming requests with JSON payloads
-app.use(cors())
 app.use(users)
 app.use(inventory)
 
