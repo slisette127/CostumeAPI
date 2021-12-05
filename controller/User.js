@@ -1,4 +1,23 @@
+const mysql = require("mysql")
 const connection = require("../SQL/connection")
+
+const logIn = (req, res) => {
+        console.log("log in route")
+        console.log(req.body)
+        const {UserName, UserPassword} = req.body
+        let sql = `SELECT * FROM User WHERE UserName = ?;`
+        sql = mysql.format(sql, [UserName])
+        connection.query( sql , (err, rows) => {
+            console.log(rows.length)
+            if (UserPassword === rows[0].UserPassword) {
+                res.json(rows[0].UserName)
+            } else {
+                res.status(401).send("User name and/or Password are incorrect")
+                console.log('error' + err)
+            }
+        })
+
+}
 
 const newUser = (req, res, next) => {
     console.log("inside /Post newUserRoute") 
@@ -71,5 +90,5 @@ const newUserProject = (req, res) => {
 
 
 
-module.exports = {newUser, newUserInventory, newUserProject}
+module.exports = {newUser, newUserInventory, newUserProject, logIn}
 
