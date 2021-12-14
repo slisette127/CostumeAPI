@@ -35,4 +35,23 @@ const addItem = (req, res) => {
     }
 }
 
-module.exports = {getInventory, addItem}
+const deleteItem = (req, res) => {
+    console.log(req)
+    console.log("inside /delete deleteItem")
+    const {ItemId} =req.params
+    if (req.body) {
+        const sql = `DELETE FROM lucy2_Inventory_Table WHERE ItemId = ?;`
+        let body = [ItemId]
+        connection.query(sql, body, (error, results) => {
+            if (error) {
+                console.log("there is an error", error)
+                req.status(500)
+            } else {
+                console.log("delete item", results)
+                res.send(results)
+            }
+        })
+    }
+}
+
+module.exports = {getInventory, addItem, deleteItem}
